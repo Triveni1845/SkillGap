@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Skill Gap Analyzer</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}">
+</head>
+
+<body>
+
+<div class="main-container">
+
+    <div class="header">
+        <h1>Skill Gap Analyzer</h1>
+        <p>Upload your Resume & Job Description to check your job fit</p>
+    </div>
+
+    <form action="/analyze" method="post" enctype="multipart/form-data" class="card">
+
+        <label>Full Name</label>
+        <input type="text" name="name" required>
+
+        <label>Email Address</label>
+        <input type="email" name="email" required>
+
+        <label>Upload Resume</label>
+        <input type="file" name="resume_file" required><br><br>
+<label>Job Description</label>
+        <textarea name="job_description" rows="8" placeholder="Paste Job Description Here"></textarea>
+
+
+        <button type="submit">Analyze My Skills</button>
+
+    </form>
+
+    <div class="footer">
+        © 2026 Skill Gap Analyzer
+    </div>
+
+</div>
+
+</body>
+</html> 

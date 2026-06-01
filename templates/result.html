@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skill Compatibility Report</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
+</head>
+<body>
+
+<div class="background">
+
+    <div class="card">
+
+        <!-- Header -->
+        <div class="card-header">
+           
+            <h2>Skill Compatibility Analysis Report</h2>
+        </div>
+
+        <!-- Candidate Info -->
+        <div class="card-body">
+
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Applied Role:</strong> {{ role }}</p>
+
+            <hr>
+
+            <!-- Progress Section -->
+            <h3>Overall Skill Match</h3>
+
+            <div class="progress-container">
+                <div class="progress-bar" style="width: {{ percentage }}%;">
+                    {{ percentage }}%
+                </div>
+            </div>
+
+            <div class="skills-section">
+                 <div class="skills-box">
+                      <h4>Required Skills</h4>
+                       {% for skill in job_skills %}
+                          <p>{{ skill }}</p>
+                       {% endfor %}
+                 </div>
+                <div class="skills-box">
+                    <h4>✔ Matched Skills</h4>
+                    {% for skill in matched_skills %}
+                        <p class="matched">{{ skill }}</p>
+                    {% endfor %}
+                </div>
+
+                <div class="skills-box">
+                    <h4>✖ Missing Skills</h4>
+                    {% if missing_skills %}
+                        {% for skill in missing_skills %}
+                            <p class="missing">{{ skill }}</p>
+                        {% endfor %}
+                    {% else %}
+                        <p class="matched">No missing skills</p>
+                    {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Buttons -->
+        <div class="card-footer">
+            <a href="/" class="btn">Home</a>
+
+            <a href="/download-report?name={{ name }}&email={{ email }}&role={{ role }}&percentage={{ percentage }}"
+               class="btn download">
+               Download Report
+            </a>
+            <a href="/view-graph?percentage={{ percentage }}&matched={{ matched_skills|length }}&missing={{ missing_skills|length }}"
+   class="btn">
+   View Graph
+</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
