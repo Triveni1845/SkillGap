@@ -32,8 +32,9 @@ app.config['MAIL_PASSWORD'] = "duwe utgl mifm upfm" #Replace with password
 mail = Mail(app)
 
 # ================= MONGODB CONFIG (FIXED) =================
+
 client = MongoClient(
-    "mongodb+srv://skillgapuser:skillgap1234@cluster0.vloq8ub.mongodb.net/?appName=Cluster0",#set your mongo url
+    os.environ.get("MONGO_URI"),
     tls=True,
     tlsCAFile=certifi.where()
 )
