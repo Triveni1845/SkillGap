@@ -26,14 +26,14 @@ app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = "abc@gmail.com"  # Replace with your mail
-app.config['MAIL_PASSWORD'] = "abc def ghi jkl" #Replace with password
+app.config['MAIL_USERNAME'] = "trivenip.softwaredeveloper@gmail.com"  # Replace with your mail
+app.config['MAIL_PASSWORD'] = "duwe utgl mifm upfm" #Replace with password
 
 mail = Mail(app)
 
 # ================= MONGODB CONFIG (FIXED) =================
 client = MongoClient(
-    "mongodb+srv://dbname:password@cluster0.vloq8ub.mongodb.net/?appName=Cluster0",#set your mongo url
+    "mongodb+srv://skillgapuser:skillgap123@cluster0.vloq8ub.mongodb.net/?appName=Cluster0",#set your mongo url
     tls=True,
     tlsCAFile=certifi.where()
 )
