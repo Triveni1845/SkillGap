@@ -41,7 +41,7 @@ client = MongoClient(
 
 db = client["skillgapdb"]
 users = db["users"]
-fs = gridfs.GridFS(db)
+#fs = gridfs.GridFS(db)
 
 print("✅ MongoDB Connected Successfully")
 
@@ -134,12 +134,12 @@ def analyze():
     resume_file = request.files["resume_file"]
 
     # Save to GridFS
-    file_id = fs.put(
-        resume_file.read(),
-        filename=resume_file.filename,
-        contentType="application/pdf"
-    )
-
+    #file_id = fs.put(
+       ## resume_file.read(),
+       # filename=resume_file.filename,
+        #contentType="application/pdf"
+    #)
+    file_id = None
     # Save locally
     resume_path = os.path.join(app.config["UPLOAD_FOLDER"], resume_file.filename)
     resume_file.seek(0)
