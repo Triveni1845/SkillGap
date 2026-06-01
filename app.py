@@ -151,7 +151,11 @@ def analyze():
     matched_skills = list(set(job_skills) & set(resume_skills))
     missing_skills = list(set(job_skills) - set(resume_skills))
 
-    match_percentage = round((len(matched_skills) / len(job_skills)) * 100) if job_skills else 0
+    #match_percentage = round((len(matched_skills) / len(job_skills)) * 100) if job_skills else 0
+    if job_skills:
+       match_percentage = round((len(matched_skills) / len(job_skills)) * 100)
+    else:
+       match_percentage = 0
 
     if match_percentage >= 80:
         status = "Excellent Match"
