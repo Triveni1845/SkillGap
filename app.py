@@ -1,5 +1,7 @@
 import io
 import os
+from dotenv import load_dotenv
+load_dotenv()
 import gridfs
 import certifi
 from bson import ObjectId
@@ -9,6 +11,7 @@ from pymongo import MongoClient
 
 from agents.resume_agent import get_resume_skills
 from agents.skill_map import get_skills_from_role, get_learning_links
+
 
 # ================= FLASK CONFIG =================
 app = Flask(__name__)
@@ -35,8 +38,13 @@ mail = Mail(app)
 
 # ================= MONGODB CONFIG (FIXED) =================
 
+MONGO_URI = os.environ.get("MONGO_URI")
+print("MONGO_URI =", MONGO_URI)
+if not MONGO_URI:
+    raise Exception("MONGO_URI not found in environment variables")
+
 client = MongoClient(
-    os.environ.get("MONGO_URI"),
+    MONGO_URI,
     tls=True,
     tlsCAFile=certifi.where()
 )
