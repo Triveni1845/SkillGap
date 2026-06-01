@@ -33,7 +33,7 @@ mail = Mail(app)
 
 # ================= MONGODB CONFIG (FIXED) =================
 client = MongoClient(
-    "mongodb+srv://skillgapuser:skillgap123@cluster0.vloq8ub.mongodb.net/?appName=Cluster0",#set your mongo url
+    "mongodb+srv://skillgapuser:skillgap1234@cluster0.vloq8ub.mongodb.net/?appName=Cluster0",#set your mongo url
     tls=True,
     tlsCAFile=certifi.where()
 )
@@ -179,7 +179,7 @@ def analyze():
 
     # Send email safely
     try:
-    #send_result_email(email, name, status, missing_skills, match_percentage)
+       send_result_email(email, name, status, missing_skills, match_percentage)
     except Exception as e:
         print("Email error:", e)
 
