@@ -179,7 +179,7 @@ def analyze():
 
     # Send email safely
     try:
-        send_result_email(email, name, status, missing_skills, match_percentage)
+        #send_result_email(email, name, status, missing_skills, match_percentage)
     except Exception as e:
         print("Email error:", e)
 
