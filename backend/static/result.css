@@ -1,0 +1,119 @@
+/* Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.background {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #141e30, #243b55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+/* Card */
+.card {
+    width: 1000px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 40px;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Header */
+.card-header h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* Body */
+.card-body p {
+    margin: 8px 0;
+}
+
+/* Progress Bar */
+.progress-container {
+    background: rgba(255,255,255,0.2);
+    border-radius: 30px;
+    height: 30px;
+    overflow: hidden;
+    margin: 20px 0 40px 0;
+}
+
+.progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff9d, #00c3ff);
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    border-radius: 30px;
+    animation: loadBar 1.5s ease-in-out;
+}
+
+@keyframes loadBar {
+    from { width: 0; }
+}
+
+/* Skills Section */
+.skills-section {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+.skills-box {
+    flex: 1;
+    background: rgba(255,255,255,0.1);
+    padding: 20px;
+    border-radius: 15px;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.skills-box h4 {
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 5px;
+}
+
+.matched {
+    color: #00ff9d;
+    font-weight: 500;
+}
+
+.missing {
+    color: #ff4b5c;
+    font-weight: 500;
+}
+
+/* Footer Buttons */
+.card-footer {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    background: linear-gradient(90deg, #00ff9d, #00c3ff);
+    transition: 0.3s;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
+
+.btn.download {
+    background: linear-gradient(90deg, #ffb347, #ffcc33);
+}
