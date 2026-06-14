@@ -7,9 +7,9 @@ from flask import Flask, render_template, request, send_file, redirect, url_for,
 from flask_mail import Mail, Message
 from pymongo import MongoClient
 
-from backend.agents.resume_agent import get_resume_skills
-from backend.agents.gemini_agent import get_skills_from_gemini
-from backend.agents.skill_map import get_learning_links
+from agents.resume_agent import get_resume_skills
+from agents.gemini_agent import get_skills_from_gemini
+from agents.skill_map import get_learning_links
 from dotenv import load_dotenv
 load_dotenv()
 
