@@ -1,14 +1,12 @@
 import os
 import google.generativeai as genai
-# gemini_agent.py
 
-def generate_response(prompt):
-    return f"Gemini response for: {prompt}"
+api_key = os.getenv("GOOGLE_API_KEY")
+print("API key found:", api_key is not None)
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key=api_key)
 
 model = genai.GenerativeModel("gemini-2.5-flash")
-
 
 def get_skills_from_gemini(job_role):
     prompt = f"""
