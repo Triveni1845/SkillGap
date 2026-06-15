@@ -4,7 +4,8 @@ import gridfs
 import certifi
 from bson import ObjectId
 from flask import Flask, render_template, request, send_file, redirect, url_for, session
-from flask_mail import Mail, Message
+import sib_api_v3_sdk
+from sib_api_v3_sdk.rest import ApiException
 from pymongo import MongoClient
 
 from agents.resume_agent import get_resume_skills
@@ -25,18 +26,28 @@ ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "admin123" #create your password
 
 # ================= EMAIL CONFIG =================
-import os
-from flask_mail import Mail
+def send_email(to_email, subject, content):
 
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 587
-app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USE_SSL'] = False
+    configuration = sib_api_v3_sdk.Configuration()
+    configuration.api_key['api-key'] = os.getenv("BREVO_API_KEY")
 
-app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
-app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+    api_instance = sib_api_v3_sdk.TransactionalEmailsApi(
+        sib_api_v3_sdk.ApiClient(configuration)
+    )
 
-mail = Mail(app)
+    email = sib_api_v3_sdk.SendSmtpEmail(
+        to=[{"email": to_email}],
+        sender={"email": "trivenip.softwaredeveloper@gmail.com"},
+        subject=subject,
+        html_content=content
+    )
+
+    try:
+        api_instance.send_transac_email(email)
+        print("Email sent successfully")
+
+    except ApiException as e:
+        print("Email error:", e)
 # ================= MONGODB CONFIG (FIXED) =================
 client = MongoClient(
     "mongodb+srv://skillgapuser:skillgap1845@cluster0.vloq8ub.mongodb.net/?appName=Cluster0",#set your mongo url
@@ -113,16 +124,15 @@ Regards,
 Skill Gap Analyzer Team
 """
 
-    msg = Message(
-        subject="Skill Compatibility Report",
-        sender=app.config['MAIL_USERNAME'],
-        recipients=[to]
-    )
+   html_content = body.replace("\n", "<br>")
 
-    msg.body = body
-    mail.send(msg)
+send_email(
+    to_email=to,
+    subject="Skill Compatibility Report",
+    content=html_content
+)
 
-    print("✅ Email Sent Successfully")
+print("✅ Email Sent Successfully")
 
 # ================= HOME =================
 @app.route("/")
