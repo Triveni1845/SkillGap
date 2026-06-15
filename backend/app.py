@@ -88,31 +88,21 @@ Identified Skill Gaps:
 
 Recommendation:
 To improve your chances for this role, focus on these skills.
-
-• Work on real projects
-• Take certification courses
-• Practice coding platforms
-• Improve your resume with achievements
 """
 
-        # Get learning links
         learning_links = get_learning_links(missing_skills)
 
         if learning_links:
-
             body += "\n\nRecommended Learning Resources\n"
 
             for item in learning_links:
                 body += f"\n• {item['skill'].title()}\n{item['link']}\n"
 
     else:
-
         body += """
 
 Excellent Work!
-
 Your profile strongly aligns with the required skills.
-You are well prepared for this role.
 """
 
     body += """
@@ -124,16 +114,15 @@ Regards,
 Skill Gap Analyzer Team
 """
 
-   html_content = body.replace("\n", "<br>")
+    html_content = body.replace("\n", "<br>")
 
-send_email(
-    to_email=to,
-    subject="Skill Compatibility Report",
-    content=html_content
-)
+    send_email(
+        to_email=to,
+        subject="Skill Compatibility Report",
+        content=html_content
+    )
 
-print("✅ Email Sent Successfully")
-
+    print("✅ Email Sent Successfully")
 # ================= HOME =================
 @app.route("/")
 def home():
