@@ -25,15 +25,18 @@ ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "admin123" #create your password
 
 # ================= EMAIL CONFIG =================
+import os
+from flask_mail import Mail
+
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
-app.config['MAIL_USERNAME'] = "trivenip.softwaredeveloper@gmail.com"  # Replace with your mail
-app.config['MAIL_PASSWORD'] = "duwe utgl mifm upfm"  #Replace with password
+
+app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 
 mail = Mail(app)
-
 # ================= MONGODB CONFIG (FIXED) =================
 client = MongoClient(
     "mongodb+srv://skillgapuser:skillgap1845@cluster0.vloq8ub.mongodb.net/?appName=Cluster0",#set your mongo url
